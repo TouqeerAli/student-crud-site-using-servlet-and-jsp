@@ -59,7 +59,7 @@ public class LoginServlet extends HttpServlet {
 			if(user.getEmail().equals(userName) && user.getPassword().equals(password)) {
 				
 				response.sendRedirect("StudentListServlet");
-			}else{
+			}else if(usersList.indexOf(user) == (usersList.size()-1)){
 //				HttpSession session = request.getSession();
 //				session.setAttribute("isIncorrect", true);
 //				

@@ -6,27 +6,38 @@
 <meta charset="UTF-8">
 <title>Login Page</title>
 <style>
-body {
-	font-family: Arial, sans-serif;
-	background-color: #f4f4f4;
+html, body {
+	height: 100%;
 	margin: 0;
-	padding: 0;
+}
+
+body {
+	background: linear-gradient(45deg, purple, blue);
+	background-repeat: no-repeat;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 .container {
-	background-color: #fff;
+	width: 100%;
+	height: 400px;
+	max-width: 300px;
+	color: white;
+	padding: 40px;
+	padding-top: 80px; background-color : #242124;
 	border-radius: 8px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	width: 300px;
-	margin: 100px auto;
-	padding: 20px;
+	background-color: #242124;
 }
 
 .container h2 {
 	text-align: center;
+	margin-top: 0;
 }
 
-input {
+input, button {
 	width: 100%;
 	padding: 10px;
 	margin: 8px 0;
@@ -34,14 +45,17 @@ input {
 	border-radius: 5px;
 }
 
+input {
+	background: transparent;
+	border: 1px solid #ccc;
+	color: white;
+}
+
 button {
 	background-color: #4CAF50;
 	color: white;
-	padding: 10px 15px;
 	border: none;
-	border-radius: 4px;
 	cursor: pointer;
-	font-size: 16px;
 }
 
 button:hover {
@@ -52,23 +66,50 @@ button:hover {
 	display: flex;
 	justify-content: center;
 }
+
+a {
+	color: #4CAF50;
+	text-decoration: none;
+}
+
+.forgotPasswordLink {
+	text-align: right;
+	margin-bottom: 10px;
+}
+
+.signUpLink {
+	text-align: center;
+}
+
+.errorMessage {
+	color: red;
+	font-size: 12px;
+	margin-bottom: 10px;
+}
+
+p {
+	font-size: 15px;
+}
 </style>
 </head>
 <body>
 	<div class="container">
 		<h2>Login</h2>
+		<p class="para1">Please enter your username and password!</p>
 		<form action="loginServlet" method="post">
-			<label for="username">Username:</label> <input type="email"
-				id="username" name="username" required> <label
-				for="password">Password:</label> <input type="password"
-				id="password" name="password" required>
-			
+
+			<input type="email" id="username" name="username"
+				placeholder="Username" required> <input type="password"
+				id="password" name="password" placeholder="Password" required>
+
 			<%
 			String error = (String) session.getAttribute("error");
 			if (error != null) {
 			%>
 			<p style="color: red;"><%=error%></p>
-			<% session.removeAttribute("error");%>
+			<%
+			session.removeAttribute("error");
+			%>
 			<%
 			}
 			%>
